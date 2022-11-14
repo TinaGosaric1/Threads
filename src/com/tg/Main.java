@@ -23,10 +23,18 @@ public class Main {
             @Override
             public void run() {
                 System.out.println(ANSI_CYAN + "Hello from the anonymous class implementing MyRunnable class.");
+                try {
+                    anotherThread.join(2000); // we want to join myRunnableThread to anotherThread
+                    System.out.println(ANSI_CYAN + "AnotherThread terminated or timed out, so I'm running again.");
+                } catch (InterruptedException e){
+                    System.out.println(ANSI_CYAN + "I couldn't wait after all. I was interrupted.");
+                }
             }
         });
 
         myRunnableThread.start();
+
+      //  anotherThread.interrupt();
 
         System.out.println(ANSI_PURPLE + "Hello again from the thread 1.");
     }
