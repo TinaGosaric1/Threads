@@ -9,7 +9,7 @@ public class Main {
 
         Thread anotherThread = new AnotherThread();
         anotherThread.start();
-//        Using a subclass of thread means that we have to define the run method once but we can't reuse the same instance.
+//        Using a subclass of thread means that we have to define the run method once, but we can't reuse the same instance.
 //        anotherThread.start();
 
         new Thread() { // anonymous class
@@ -17,6 +17,9 @@ public class Main {
                 System.out.println(ANSI_GREEN + "Hello from anonymous class tread.");
             }
         }.start();
+
+        Thread myRunnableThread = new Thread(new MyRunnable()); // with Runnable interface
+        myRunnableThread.start();
 
         System.out.println(ANSI_PURPLE + "Hello again from the thread 1.");
     }
